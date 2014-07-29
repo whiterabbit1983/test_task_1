@@ -1,0 +1,35 @@
+{% load staticfiles %}
+
+<link href="{% static 'myapp/css/jquery-ui.min.css' %}" rel="stylesheet">
+<script src="{% static 'myapp/js/jquery.js' %}"></script>
+<script src="{% static 'myapp/js/jquery.cookie.js' %}"></script>
+<script src="{% static 'myapp/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'myapp/js/jquery.editable.js' %}"></script>
+<script src="{% static 'myapp/js/app.js' %}"></script>
+<div>
+    <div style="width: 20%; float: left" id="list">
+    </div>
+    <div style="width: 80%; float: left;">
+    <div id="errors">
+    </div>
+    <div id="info">
+    </div>
+    <br>
+    <div id="form">
+    </div>
+    <div>
+    {% csrf_token %}
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var links = {
+            {% for k, v in models_map.items %}
+                "{{ k|escape }}": ["{{ v|escape }}", "{{ request.build_absolute_uri }}{{ k|escape }}"],
+            {% endfor %}
+        };
+
+        App({
+            "links-var": links,
+        }).run();
+    });
+</script>

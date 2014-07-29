@@ -1,0 +1,9 @@
+venv
+*.pyc
+*.sqlite3
+*.db
+staticfiles
+*local_settings.py
+*__pycache__
+*htmlcov
+*.coverage
